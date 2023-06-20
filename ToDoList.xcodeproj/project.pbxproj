@@ -16,6 +16,7 @@
 		82EBF3EC2A389B5900CEE3CB /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBF3EB2A389B5900CEE3CB /* ToDoListTests.swift */; };
 		82EBF3F62A389B5900CEE3CB /* ToDoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBF3F52A389B5900CEE3CB /* ToDoListUITests.swift */; };
 		82EBF3F82A389B5900CEE3CB /* ToDoListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBF3F72A389B5900CEE3CB /* ToDoListUITestsLaunchTests.swift */; };
+		82FA45672A3D356400BB5C3B /* ToDoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FA45662A3D356400BB5C3B /* ToDoItemModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		82EBF3F12A389B5900CEE3CB /* ToDoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82EBF3F52A389B5900CEE3CB /* ToDoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITests.swift; sourceTree = "<group>"; };
 		82EBF3F72A389B5900CEE3CB /* ToDoListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		82FA45662A3D356400BB5C3B /* ToDoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		82EBF3D32A389B5700CEE3CB /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				82FA45652A3D354200BB5C3B /* Model */,
 				82EBF3D42A389B5700CEE3CB /* AppDelegate.swift */,
 				82EBF3D62A389B5700CEE3CB /* SceneDelegate.swift */,
 				82EBF3D82A389B5700CEE3CB /* ViewController.swift */,
@@ -125,6 +128,14 @@
 				82EBF3F72A389B5900CEE3CB /* ToDoListUITestsLaunchTests.swift */,
 			);
 			path = ToDoListUITests;
+			sourceTree = "<group>";
+		};
+		82FA45652A3D354200BB5C3B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82FA45662A3D356400BB5C3B /* ToDoItemModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82FA45672A3D356400BB5C3B /* ToDoItemModel.swift in Sources */,
 				82EBF3D92A389B5700CEE3CB /* ViewController.swift in Sources */,
 				82EBF3D52A389B5700CEE3CB /* AppDelegate.swift in Sources */,
 				82EBF3D72A389B5700CEE3CB /* SceneDelegate.swift in Sources */,
