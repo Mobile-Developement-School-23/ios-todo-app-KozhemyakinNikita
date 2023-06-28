@@ -35,7 +35,7 @@ extension ToDoItem {
         guard let jsn = json as? [String: Any] else {
             return nil
         }
- 
+
         guard
             let id = jsn["id"] as? String,
             let text = jsn["text"] as? String,
@@ -44,20 +44,21 @@ extension ToDoItem {
         else {
             return nil
         }
- 
-        let importanceString = jsn["importance"] as? String
-        guard let importance = Importance(rawValue: importanceString ?? "") else { return nil }
- 
+
+        let importance = (jsn["importance"] as? String).flatMap(Importance.init(rawValue:)) ?? .common
+
         let created = Date(timeIntervalSince1970: createdTI)
- 
+
         let deadlineTI = jsn["deadline"] as? TimeInterval
         let deadline = deadlineTI.map{ Date(timeIntervalSince1970: $0) }
- 
+
         let changedTI = jsn["changedAt"] as? TimeInterval
         let changed = changedTI.map{ Date(timeIntervalSince1970: $0) }
- 
+
         return ToDoItem(id: id, text: text, deadline: deadline, importance: importance, isDone: isDone, created: created, changed: changed)
     }
+    
+    
  
     var json: Any {
         var dict: [String: Any] = [
