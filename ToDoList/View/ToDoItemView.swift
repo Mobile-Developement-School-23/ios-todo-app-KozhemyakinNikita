@@ -4,9 +4,8 @@ import Foundation
 import UIKit
 
 
-class ToDoItemSettingsView: UIView, UITextViewDelegate {
+class ToDoItemSettingsView: UIView {
     weak var delegate: ToDoItemSettingsViewDelegate?
-    let scrollView = UIScrollView()
     let importanceLabel = UILabel()
     let importanceControl = UISegmentedControl(items:
                                                 [UIImage(named: "arrowLine") as Any,
@@ -24,32 +23,12 @@ class ToDoItemSettingsView: UIView, UITextViewDelegate {
     
     let secondSpacer = UIView()
     
-    private lazy var stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.backgroundColor = UIColor.Colors.backPrimary
-        stack.spacing = 16.0
-        return stack
-    }()
-    
-    private lazy var verticalSubStack: UIStackView = {
+    lazy var verticalSubStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.backgroundColor = UIColor.Colors.backSecondary
         stack.layer.cornerRadius = 16
         return stack
-    }()
-    
-    lazy var textView: UITextView = {
-        let txtView = UITextView()
-        txtView.isScrollEnabled = false
-        txtView.textColor = UIColor.Colors.labelTertiary
-        txtView.text = "Что надо сделать?"
-        txtView.font = .body
-        txtView.layer.cornerRadius = 16
-        txtView.backgroundColor = UIColor.Colors.backSecondary
-        txtView.delegate = self
-        return txtView
     }()
     
     private lazy var importanceHStack: UIStackView = {
@@ -61,7 +40,7 @@ class ToDoItemSettingsView: UIView, UITextViewDelegate {
         importanceStack.addArrangedSubview(importanceControl)
         
         importanceLabel.text = "Важность"
-        
+        importanceControl.selectedSegmentIndex = 1
         importanceControl.addTarget(self, action: #selector(importanceControlValueChanged), for: .valueChanged)
         return importanceStack
     }()
@@ -80,37 +59,19 @@ class ToDoItemSettingsView: UIView, UITextViewDelegate {
         return stack
     }()
     
-    private lazy var dateFormatter: DateFormatter = {
+    lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "d MMMM yyyy"
         return formatter
     }()
     
-    private lazy var deadlineDate: UIButton = {
+    lazy var deadlineDate: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(UIColor.Colors.colorBlue, for: .normal) 
         button.titleLabel?.font = UIFont.footnote
         button.contentHorizontalAlignment = .left
         button.isHidden = true
         button.addTarget(self, action: #selector(deadlineDateButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var deleteButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Удалить", for: .normal)
-        button.tintColor = UIColor.Colors.colorRed
-        button.titleLabel?.font = UIFont.body
-        button.backgroundColor = UIColor.Colors.backSecondary
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalToConstant: 56).isActive = true
-        button.layer.cornerRadius = 16
-        button.isEnabled = true
-        button.addTarget(
-            self,
-            action: #selector(deleteItem),
-            for: .touchUpInside
-        )
         return button
     }()
     
@@ -124,12 +85,7 @@ class ToDoItemSettingsView: UIView, UITextViewDelegate {
     }
     
     func setupConstraints() {
-        addSubview(scrollView)
-        scrollView.addSubview(stackView)
-        
-        stackView.addArrangedSubview(textView)
-        stackView.addArrangedSubview(verticalSubStack)
-        
+        addSubview(verticalSubStack)
         verticalSubStack.addArrangedSubview(additionalView)
         
         additionalView.addSubview(importanceHStack)
@@ -151,37 +107,12 @@ class ToDoItemSettingsView: UIView, UITextViewDelegate {
         deadLineAdditionalView.addSubview(secondSpacer)
         
         verticalSubStack.addArrangedSubview(deadlineDatePicker)
-        stackView.addArrangedSubview(deleteButton)
-        
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 16),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor)
-        ])
-        
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            textView.topAnchor.constraint(equalTo: stackView.topAnchor),
-            textView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            textView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120)
-        ])
         
         verticalSubStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            verticalSubStack.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            verticalSubStack.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            verticalSubStack.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            verticalSubStack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            verticalSubStack.trailingAnchor.constraint(equalTo: trailingAnchor),
+            verticalSubStack.widthAnchor.constraint(equalTo: widthAnchor),
         ])
         
         additionalView.translatesAutoresizingMaskIntoConstraints = false
@@ -246,11 +177,16 @@ class ToDoItemSettingsView: UIView, UITextViewDelegate {
         deadlineDatePicker.date = nextDay ?? Date()
         
         deadlineDatePicker.datePickerMode = .date
+        deadlineDatePicker.calendar.firstWeekday = 2
+        let calendar = Calendar.current
+        deadlineDatePicker.minimumDate = calendar.startOfDay(for: Date())
     }
     
     func setupSwitcher() {
         deadlineSwitcher.addTarget(self, action: #selector(deadlineSwitcherValueChanged), for: .valueChanged)
     }
+    
+    
     
     //MARK: - Actions
     
@@ -260,13 +196,11 @@ class ToDoItemSettingsView: UIView, UITextViewDelegate {
         
         switch selectedSegmentIndex {
         case 0:
-            importance = Importance.important
-        case 1:
-            importance = Importance.common
-        case 2:
             importance = Importance.unimpurtant
+        case 2:
+            importance = Importance.important
         default:
-            break
+            importance = Importance.common
         }
         delegate?.importanceControlValueChanged(importance: importance)
     }
@@ -279,8 +213,15 @@ class ToDoItemSettingsView: UIView, UITextViewDelegate {
             deadlineDate.setTitle(formattedDate, for: .normal)
         } else {
             deadlineDate.isHidden = true
-            deadlineDatePicker.isHidden = true
+            UIView.animate(withDuration: 0.3) {
+                self.deadlineDatePicker.alpha = 0.0
+            } completion: { _ in
+                self.deadlineDatePicker.isHidden = true
+                self.secondSpacer.isHidden = true
+            }
+            isDatePickerVisible = false
             secondSpacer.isHidden = true
+            
         }
     }
     
@@ -311,32 +252,12 @@ class ToDoItemSettingsView: UIView, UITextViewDelegate {
         deadlineDate.setTitle(formattedDate, for: .normal)
     }
     
-    @objc private func deleteItem() {
-        delegate?.deleteItem()
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "Что надо сделать?" {
-            textView.text = ""
-            textView.textColor = UIColor.Colors.labelPrimary
-        }
-    }
-    
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        
-        return true
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
-            textView.textColor = UIColor.Colors.labelTertiary
-            textView.text = "Что надо сделать?"
-        }
-        textView.resignFirstResponder()
-    }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 }
+
+
+
+
 
