@@ -11,6 +11,7 @@ extension UIColor {
         static let supportSeparator = UIColor(named: "supportSeparator")
         static let colorRed = UIColor(named: "colorRed")
         static let colorBlue = UIColor(named: "colorBlue")
+        static let colorGreen = UIColor(named: "colorGreen")
     }
 }
 
