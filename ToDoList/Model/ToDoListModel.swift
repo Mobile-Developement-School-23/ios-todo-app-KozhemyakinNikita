@@ -41,7 +41,7 @@ extension ToDoListModel: ToDoListModelDelegate {
             print("Error: fetchData()")
         }
     }
-    
+
     func openSetupToDo(with item: ToDoItem? = nil) {
         let newNavViewController = UINavigationController(rootViewController: ToDoItemController())
         newNavViewController.modalTransitionStyle = .coverVertical
