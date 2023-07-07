@@ -24,38 +24,41 @@ class ToDoListViewCell: UITableViewCell {
     var deadlineStack = UIStackView()
     var statusStack = UIStackView()
     var importanceView = UIImageView()
-    
+
     var isChecked = false {
         didSet {
             updateIcon()
         }
     }
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         setupView()
+//        self.layer.cornerRadius = 16
+//        self.clipsToBounds = true
+//        self.contentView.layer.cornerRadius = 16
+//        self.contentView.clipsToBounds = true
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    //MARK: - Setup
-    
+
+    // MARK: - Setup
+
     func setupCellsView(with todoItem: ToDoListCellModel) {
-        self.viewModel = todoItem   //change
+        self.viewModel = todoItem   // change
         let todoItem = todoItem.todoItem
-        
         textField.text = todoItem.text
         textField.textColor = UIColor.Colors.labelPrimary
         textField.strikeThrough(todoItem.isDone)
-        
+
         if todoItem.isDone == true {
             isDoneButton.setImage(UIImage(named: "radioButtonOn"), for: UIControl.State.normal)
             textField.textColor = UIColor.Colors.labelTertiary
             importanceView.isHidden = true
-        } else if todoItem.importance == .important{
+        } else if todoItem.importance == .important {
             isDoneButton.setImage(UIImage(named: "radioButtonHighPriority"), for: UIControl.State.normal)
             importanceView.image = UIImage(named: "quarks")
             importanceView.isHidden = false
@@ -67,8 +70,8 @@ class ToDoListViewCell: UITableViewCell {
             isDoneButton.setImage(UIImage(named: "radioButtonOff"), for: UIControl.State.normal)
             importanceView.isHidden = true
         }
-        
-        if let deadline = todoItem.deadline{
+
+        if let deadline = todoItem.deadline {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd MMM"
             deadlineView.text = dateFormatter.string(from: deadline)
@@ -77,31 +80,31 @@ class ToDoListViewCell: UITableViewCell {
             deadlineStack.isHidden = true
         }
     }
-    
+
     func setupView() {
         setupStatusOfItem()
         setupConstraints()
         setupTextField()
         setupDeadlineStack()
         setupTextViewStack()
-        
+
     }
-    
+
     func setupStatusOfItem() {
         isDoneButton.addTarget(self, action: #selector(iconButtonTapped(_:)), for: .touchUpInside)
         isDoneButton.layer.cornerRadius = 666
-        
+
         statusStack.axis = .horizontal
         statusStack.spacing = 12
         statusStack.alignment = .center
     }
-    
+
     func setupTextField() {
         textField.numberOfLines = 3
         textField.font = UIFont.body
         textField.textColor = UIColor.Colors.labelPrimary
     }
-    
+
     func setupDeadlineStack() {
         deadlineView.font = UIFont.footnote
         deadlineView.textColor = UIColor.Colors.labelTertiary
@@ -109,13 +112,13 @@ class ToDoListViewCell: UITableViewCell {
         deadlineStack.spacing = 2
         deadlineStack.alignment = .center
     }
-    
+
     func setupTextViewStack() {
         textViewStack.axis = .vertical
         textViewStack.distribution = .fill
         textViewStack.alignment = .leading
     }
-    
+
     private func updateIcon() {
         let imageName = isChecked ? "radioButtonOn" : "radioButtonOff"
         let image = UIImage(named: imageName)
@@ -127,9 +130,9 @@ class ToDoListViewCell: UITableViewCell {
     }
     @objc private func iconButtonTapped(_ sender: UIButton) {
         isChecked.toggle()
-        
+
     }
-    
+
     func setupConstraints() {
         contentView.addSubview(statusStack)
         statusStack.addArrangedSubview(isDoneButton)
@@ -140,25 +143,25 @@ class ToDoListViewCell: UITableViewCell {
         deadlineStack.addArrangedSubview(calendar)
         deadlineStack.addArrangedSubview(deadlineView)
         //        contentView.addSubview(textField)
-        
+
         statusStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             statusStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             statusStack.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
-        
+
         isDoneButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             isDoneButton.widthAnchor.constraint(equalToConstant: 24),
             isDoneButton.heightAnchor.constraint(equalToConstant: 24)
         ])
-        
+
         importanceView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             importanceView.leadingAnchor.constraint(equalTo: isDoneButton.trailingAnchor, constant: 12),
             importanceView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
-        
+
         textViewStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             textViewStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
@@ -166,13 +169,13 @@ class ToDoListViewCell: UITableViewCell {
             textViewStack.leadingAnchor.constraint(equalTo: statusStack.trailingAnchor, constant: 16),
             textViewStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
-        
+
         calendar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             calendar.heightAnchor.constraint(equalToConstant: 16),
-            calendar.widthAnchor.constraint(equalToConstant: 16),
+            calendar.widthAnchor.constraint(equalToConstant: 16)
         ])
-        
+
     }
 }
 
@@ -181,18 +184,21 @@ extension UILabel {
         guard let text = self.text else {
             return
         }
-        
+
         if isStrikeThrough {
             let attributeString =  NSMutableAttributedString(string: text)
-            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
+            attributeString.addAttribute(
+                NSAttributedString.Key.strikethroughStyle,
+                value: NSUnderlineStyle.single.rawValue,
+                range: NSMakeRange(0, attributeString.length)
+            )
             self.attributedText = attributeString
         } else {
             let attributeString =  NSMutableAttributedString(string: text)
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
                                          value: [""],
-                                         range: NSMakeRange(0,attributeString.length))
+                                         range: NSMakeRange(0, attributeString.length))
             self.attributedText = attributeString
         }
     }
 }
-

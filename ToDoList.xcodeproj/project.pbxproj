@@ -153,6 +153,13 @@
 			path = ItemModel;
 			sourceTree = "<group>";
 		};
+		82B984DE2A57811900F1CD80 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		82CBED172A46488F0049909A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +195,7 @@
 		82EBF3D32A389B5700CEE3CB /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				82B984DE2A57811900F1CD80 /* Networking */,
 				82CBED172A46488F0049909A /* Protocols */,
 				82FA45652A3D354200BB5C3B /* Model */,
 				82F781F82A4212F900027244 /* View */,

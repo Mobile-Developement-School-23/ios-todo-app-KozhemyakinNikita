@@ -1,5 +1,3 @@
-
-
 import Foundation
 import UIKit
 
@@ -14,7 +12,6 @@ class ToDoItemController: UIViewController {
     var todoItem: ToDoItem?
     let scrollView = UIScrollView()
     weak var listViewController: ToDoListViewController?
-    
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -22,7 +19,6 @@ class ToDoItemController: UIViewController {
         stack.spacing = 16.0
         return stack
     }()
-    
     lazy var textView: UITextView = {
         let txtView = UITextView()
         txtView.isScrollEnabled = false
@@ -35,7 +31,6 @@ class ToDoItemController: UIViewController {
         txtView.delegate = self
         return txtView
     }()
-    
     lazy var deleteButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Удалить", for: .normal)
@@ -52,7 +47,6 @@ class ToDoItemController: UIViewController {
         )
         return button
     }()
-    
     private var currentText = String()
     private var currentImportance = Importance.common
     private var currentDeadline: Date? = nil
@@ -60,7 +54,6 @@ class ToDoItemController: UIViewController {
     var cancelButton: UIBarButtonItem?
     var saveButton: UIBarButtonItem?
     var listViewCell = ToDoListViewCell()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
@@ -70,18 +63,23 @@ class ToDoItemController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
-        
         settingsView.delegate = self
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(_:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
         scrollView.keyboardDismissMode = .interactive
-        
     }
-    
-    //MARK: - Actions
+    // MARK: - Actions
     @objc func saveItem() {
         var importance: Importance = .common
         switch settingsView.importanceControl.selectedSegmentIndex {
@@ -105,7 +103,6 @@ class ToDoItemController: UIViewController {
             print(todoItem?.id)
             todoItem = newItem
             listModel.saveTask(item: newItem)
-            
         } else {
             let newItem = ToDoItem(
                 text: textView.text,
@@ -119,30 +116,23 @@ class ToDoItemController: UIViewController {
             todoItem = newItem
             listModel.saveTask(item: newItem)
         }
-       
-        
         dismiss(animated: true)
-        
     }
-    
     @objc private func cancel() {
         dismiss(animated: true)
     }
-    
-    
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
-    
     @objc func keyboardWillShow(_ notification: Notification) {
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+        guard let keyboardSize = (
+            notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]as? NSValue
+        )?.cgRectValue else {
             return
         }
-        
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
-        
         var visibleRect = self.view.frame
         visibleRect.size.height -= keyboardSize.height
         if let activeField = findActiveField(in: scrollView) {
@@ -151,13 +141,11 @@ class ToDoItemController: UIViewController {
             }
         }
     }
-    
     @objc func keyboardWillHide(_ notification: Notification) {
         let contentInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
-    
     private func findActiveField(in view: UIView) -> UIView? {
         for subview in view.subviews {
             if let textField = subview as? UITextField, textField.isFirstResponder {
@@ -172,9 +160,7 @@ class ToDoItemController: UIViewController {
         }
         return nil
     }
-    
-    //MARK: - Setup
-    
+    // MARK: - Setup
     func setupNavigationBar() {
         let titleFont = UIFont.headline
         let attributes: [NSAttributedString.Key: Any] = [
@@ -188,27 +174,23 @@ class ToDoItemController: UIViewController {
             target: self,
             action: #selector(cancel)
         )
-        
         saveButton = UIBarButtonItem(
             title: "Сохранить",
             style: .done,
             target: self,
             action: #selector(saveItem)
         )
-        navigationItem.leftBarButtonItem = cancelButton //добавить цвет
+        navigationItem.leftBarButtonItem = cancelButton // добавить цвет
         navigationItem.rightBarButtonItem = saveButton
         navigationItem.leftBarButtonItem?.tintColor = .blue
         navigationItem.rightBarButtonItem?.tintColor = UIColor.Colors.colorBlue
     }
-    
     func checkTodoItem() {
         guard let todoItem else {
             return
         }
-        
         textView.text = todoItem.text
         textView.textColor = UIColor.Colors.labelPrimary
-        
         if todoItem.importance == .unimpurtant {
             settingsView.importanceControl.selectedSegmentIndex = 0
         } else if todoItem.importance == .common {
@@ -216,27 +198,22 @@ class ToDoItemController: UIViewController {
         } else {
             settingsView.importanceControl.selectedSegmentIndex = 2
         }
-        
         if let deadline = todoItem.deadline {
             let formattedDate = settingsView.dateFormatter.string(from: deadline)
             settingsView.deadlineDate.setTitle(formattedDate, for: .normal)
             settingsView.deadlineDatePicker.date = deadline
-            
             settingsView.deadlineSwitcher.isOn = true
             settingsView.deadlineDate.isHidden = false
         }
         saveButton?.tintColor = .blue
-        
         deleteButton.isEnabled = true
     }
-    
     func setupConstraints() {
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
         stackView.addArrangedSubview(textView)
         stackView.addArrangedSubview(settingsView.verticalSubStack)
         stackView.addArrangedSubview(deleteButton)
-    
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -244,7 +221,6 @@ class ToDoItemController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
-        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 16),
@@ -252,7 +228,6 @@ class ToDoItemController: UIViewController {
             stackView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
             stackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor)
         ])
-        
         textView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             textView.topAnchor.constraint(equalTo: stackView.topAnchor),
@@ -260,7 +235,6 @@ class ToDoItemController: UIViewController {
             textView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120)
         ])
-        
         deleteButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
 
     }
@@ -274,21 +248,17 @@ class ToDoItemController: UIViewController {
         settingsView.deadlineSwitcher.isOn = false
         deleteButton.isEnabled = false
         settingsView.deadlineDatePicker.isHidden = true
-        
     }
 }
 
-//MARK: - Extentions
+// MARK: - Extentions
 extension ToDoItemController: ToDoItemSettingsViewDelegate {
-    
     func importanceControlValueChanged(importance: Importance) {
         currentImportance = importance
     }
-    
     func deadlineSwitcherValueChanged(deadline: Date?) {
         currentDeadline = deadline
     }
-    
     @objc func deleteItem() {
         guard let item = todoItem else { return }
 //        let fc = FileCache()
@@ -298,7 +268,6 @@ extension ToDoItemController: ToDoItemSettingsViewDelegate {
         settingsView.deadlineDate.isHidden = true
         dismiss(animated: true)
     }
-    
 }
 
 extension ToDoItemController: UITextViewDelegate {
@@ -326,12 +295,8 @@ extension ToDoItemController: UITextViewDelegate {
 
 extension ToDoItemController: ToDoListViewCellDelegate {
     func didUpdateToDoItem(_ item: ToDoItem, index: Int) {
-        listModel.toDoItems[item.id] = item //заменить элемент
-        listModel.listViewController?.tableView.reloadData()//обновление таблицы
-        
+        listModel.toDoItems[item.id] = item // заменить элемент
+        listModel.listViewController?.tableView.reloadData()// обновление таблицы
         listModel.saveTask(item: item)
-        
     }
-    
-    
 }

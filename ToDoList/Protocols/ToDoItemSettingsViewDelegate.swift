@@ -1,5 +1,3 @@
-
-
 import UIKit
 
 protocol ToDoItemSettingsViewDelegate: AnyObject {
