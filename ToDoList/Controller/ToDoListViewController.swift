@@ -56,9 +56,7 @@ extension ToDoListViewController {
 
 extension ToDoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(listModel.toDoItems.count)
         return listModel.toDoItems.count
-        //        return listModel.toDoItems.count
 
     }
 
@@ -67,12 +65,9 @@ extension ToDoListViewController: UITableViewDataSource {
         let todoItem = todoItems[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? ToDoListViewCell {
             cell.accessoryType = .disclosureIndicator
-
-            //            cell.textField.text = todoItem.text
             let viewModel = ToDoListCellModel(todoItem: todoItem, index: indexPath.row)
             cell.setupCellsView(with: viewModel)
             cell.selectionStyle = .none
-//            cell.layer.cornerRadius = 16
 
             return cell
         }

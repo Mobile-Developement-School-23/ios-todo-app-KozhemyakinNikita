@@ -11,6 +11,7 @@ class ToDoItemController: UIViewController {
     let fileCache = FileCache()
     var todoItem: ToDoItem?
     let scrollView = UIScrollView()
+    var isNew: Bool = false
     weak var listViewController: ToDoListViewController?
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
@@ -87,9 +88,7 @@ class ToDoItemController: UIViewController {
         case 2: importance = .important
         default: importance = .common
         }
-//        checkTodoItem()
-//        currentText = textView.text
-        print(textView.text)
+
         if todoItem != nil {
             let newItem = ToDoItem(
                 id: todoItem?.id ?? "",
@@ -100,7 +99,6 @@ class ToDoItemController: UIViewController {
                 created: Date(),
                 changed: Date()
             )
-            print(todoItem?.id)
             todoItem = newItem
             listModel.saveTask(item: newItem)
         } else {
@@ -112,7 +110,6 @@ class ToDoItemController: UIViewController {
                 created: Date(),
                 changed: Date()
             )
-            print(todoItem?.id)
             todoItem = newItem
             listModel.saveTask(item: newItem)
         }

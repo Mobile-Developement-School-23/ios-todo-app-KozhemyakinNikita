@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import CocoaLumberjack
 import CocoaLumberjackSwift
 
@@ -7,6 +8,16 @@ enum Importance: String {
     case common
     case unimpurtant
 }
+
+private enum Keys {
+     static let kId = "id"
+     static let kText = "text"
+     static let kImportance = "importance"
+     static let kDeadline = "deadline"
+     static let kIsDone = "done"
+     static let kCreated = "created_at"
+     static let kChanged = "changed_at"
+ }
 
 struct ToDoItem {
     let id: String
@@ -44,23 +55,22 @@ extension ToDoItem {
             return nil
         }
 
-        guard
-            let id = jsn["id"] as? String,
-            let text = jsn["text"] as? String,
-            let isDone = jsn["isDone"] as? Bool,
-            let createdTI = jsn["createdAt"] as? TimeInterval
+        guard let id = jsn[Keys.kId] as? String,
+              let text = jsn[Keys.kText] as? String,
+              let isDone = jsn[Keys.kIsDone] as? Bool,
+              let createdTI = jsn[Keys.kCreated] as? TimeInterval
         else {
             return nil
         }
 
-        let importance = (jsn["importance"] as? String).flatMap(Importance.init(rawValue:)) ?? .common
+        let importance = (jsn[Keys.kImportance] as? String).flatMap(Importance.init(rawValue:)) ?? .common
 
         let created = Date(timeIntervalSince1970: createdTI)
 
-        let deadlineTI = jsn["deadline"] as? TimeInterval
+        let deadlineTI = jsn[Keys.kDeadline] as? TimeInterval
         let deadline = deadlineTI.map { Date(timeIntervalSince1970: $0) }
 
-        let changedTI = jsn["changedAt"] as? TimeInterval
+        let changedTI = jsn[Keys.kChanged] as? TimeInterval
         let changed = changedTI.map { Date(timeIntervalSince1970: $0) }
 
         return ToDoItem(
@@ -75,19 +85,19 @@ extension ToDoItem {
     }
     var json: Any {
         var dict: [String: Any] = [
-            "id": id,
-            "text": text,
-            "isDone": isDone,
-            "createdAt": created.timeIntervalSince1970
+            Keys.kId: id,
+            Keys.kText: text,
+            Keys.kIsDone: isDone,
+            Keys.kCreated: created.timeIntervalSince1970,
         ]
         if let deadline = deadline {
-            dict["deadline"] = deadline.timeIntervalSince1970
+            dict[Keys.kDeadline] = deadline.timeIntervalSince1970
         }
         if let changed = changed {
-            dict["changedAt"] = changed.timeIntervalSince1970
+            dict[Keys.kChanged] = changed.timeIntervalSince1970
         }
         if importance != .common {
-            dict["importance"] = importance.rawValue
+            dict[Keys.kImportance] = importance.rawValue
         }
 
         do {
@@ -110,6 +120,10 @@ final class FileCache {
     }()
 
     private(set) var todoItems: [String: ToDoItem] = [:]
+    var isDirty: Bool {
+        get { UserDefaults.standard.bool(forKey: "isDirty") }
+        set { UserDefaults.standard.set(newValue, forKey: "isDirty") }
+    }
 
     func addItem(_ item: ToDoItem) -> ToDoItem? {
         let itm = todoItems[item.id]

@@ -16,8 +16,8 @@ class ToDoListModel: UIViewController {
     var fileCache = FileCache()
     var fileName = "TodoCache"
     weak var listViewController: ToDoListViewController?
+    var isDirty = false
 
-    //    var toDoItems = [ToDoItem]()
     var toDoItems: [String: ToDoItem] = [:]
     public private(set) var status: IsHiddenItem = IsHiddenItem.hideCompletedItems
 
