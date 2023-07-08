@@ -89,7 +89,6 @@ class ToDoItemController: UIViewController {
         default: importance = .common
         }
 
-        print(textView.text)
         if todoItem != nil {
             let newItem = ToDoItem(
                 id: todoItem?.id ?? "",

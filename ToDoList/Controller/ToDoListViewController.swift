@@ -56,9 +56,7 @@ extension ToDoListViewController {
 
 extension ToDoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(listModel.toDoItems.count)
         return listModel.toDoItems.count
-        //        return listModel.toDoItems.count
 
     }
 
