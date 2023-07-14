@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "BABF685C-604F-487B-9570-C328BD465B7F"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DAFBC645-1BA5-471E-9D6C-245A5CD1730D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoList/Model/ToDoListModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "fetchTodoItems()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A152838E-D0E1-4450-BD1F-891C3C5887C2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoList/Networking/NetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "postItem(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A152838E-D0E1-4450-BD1F-891C3C5887C2 - 618212dab1b65f04"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "A152838E-D0E1-4450-BD1F-891C3C5887C2 - 618212dab1b65f04"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "193">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1948178C-E914-4B20-BB4E-03202F0E1D8D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoList/Networking/NetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "postItem(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1948178C-E914-4B20-BB4E-03202F0E1D8D - 618212dab1b6584e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "270">
+               </Location>
+               <Location
+                  uuid = "1948178C-E914-4B20-BB4E-03202F0E1D8D - 618212dab1b658af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "273">
+               </Location>
+               <Location
+                  uuid = "1948178C-E914-4B20-BB4E-03202F0E1D8D - 618212dab1b658af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "259">
+               </Location>
+               <Location
+                  uuid = "1948178C-E914-4B20-BB4E-03202F0E1D8D - 618212dab1b658af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "270">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoList/Networking/NetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "postItem(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 618212dab1b659ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "958">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 1b916d2f846be9e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 34c504ea0c3124c8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - f80cf9059abde3f6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - a190702da07a0075"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "154">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 618212dab1b6582b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "964">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 1b916d2f846be800"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 34c504ea0c312529"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - f80cf9059abde217"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - a190702da07a0194"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "186">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 34c504ea0c312529"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "162">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 618212dab1b6582b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "969">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 618212dab1b6582b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "946">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 618212dab1b6582b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "963">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 618212dab1b6582b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "890">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 34c504ea0c312529"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "159">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 618212dab1b659b7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "890">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 1b916d2f846be99c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - 34c504ea0c3124b5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "159">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - f80cf9059abde38b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "2EA29632-6780-48C0-B320-B7C8330C3DCD - a190702da07a0008"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for ToDoList.DefaultNetworkingService.postItem(ToDoList.ToDoItem) async throws -&gt; ToDoList.ToDoItem"
+                  moduleName = "ToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikkozhemyakin/Documents/Swift/SHMR/ToDoList/ToDoList/Networking/NetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "186">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
