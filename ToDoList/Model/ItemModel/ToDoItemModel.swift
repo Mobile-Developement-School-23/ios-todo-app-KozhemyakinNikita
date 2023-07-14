@@ -10,14 +10,15 @@ enum Importance: String {
 }
 
 private enum Keys {
-     static let kId = "id"
-     static let kText = "text"
-     static let kImportance = "importance"
-     static let kDeadline = "deadline"
-     static let kIsDone = "done"
-     static let kCreated = "created_at"
-     static let kChanged = "changed_at"
- }
+    static let kId = "id"
+    static let kText = "text"
+    static let kImportance = "importance"
+    static let kDeadline = "deadline"
+    static let kIsDone = "done"
+    static let kCreated = "created_at"
+    static let kChanged = "changed_at"
+    static let kLastUpdatedBy = "last_updated_by"
+}
 
 struct ToDoItem {
     let id: String
@@ -28,6 +29,7 @@ struct ToDoItem {
     let isDone: Bool
     let created: Date
     let changed: Date?
+    let lastUpdatedBy: String
 
     init(
         id: String = UUID().uuidString,
@@ -36,7 +38,8 @@ struct ToDoItem {
         importance: Importance,
         isDone: Bool,
         created: Date,
-        changed: Date?
+        changed: Date?,
+        lastUpdatedBy: String
     ) {
         self.id = id
         self.text = text
@@ -45,6 +48,7 @@ struct ToDoItem {
         self.isDone = isDone
         self.created = created
         self.changed = changed
+        self.lastUpdatedBy = lastUpdatedBy
     }
 
 }
@@ -58,7 +62,8 @@ extension ToDoItem {
         guard let id = jsn[Keys.kId] as? String,
               let text = jsn[Keys.kText] as? String,
               let isDone = jsn[Keys.kIsDone] as? Bool,
-              let createdTI = jsn[Keys.kCreated] as? TimeInterval
+              let createdTI = jsn[Keys.kCreated] as? TimeInterval,
+              let lastUpdatedBy = jsn[Keys.kLastUpdatedBy] as? String
         else {
             return nil
         }
@@ -80,7 +85,8 @@ extension ToDoItem {
             importance: importance,
             isDone: isDone,
             created: created,
-            changed: changed
+            changed: changed,
+            lastUpdatedBy: lastUpdatedBy
         )
     }
     var json: Any {
@@ -89,6 +95,7 @@ extension ToDoItem {
             Keys.kText: text,
             Keys.kIsDone: isDone,
             Keys.kCreated: created.timeIntervalSince1970,
+            Keys.kLastUpdatedBy: lastUpdatedBy
         ]
         if let deadline = deadline {
             dict[Keys.kDeadline] = deadline.timeIntervalSince1970
@@ -164,6 +171,7 @@ final class FileCache {
         }
         let deserializedItems = jsonArray.compactMap { ToDoItem.parse(json: $0) }
         self.todoItems = Dictionary(uniqueKeysWithValues: deserializedItems.map { ($0.id, $0) })
+        print(cacheUrl.absoluteString)
         DDLogInfo("File successfully loaded \(file).json")
     }
     func updateItem(_ id: String, withUpdatedIsDone isDone: Bool) {
@@ -177,7 +185,8 @@ final class FileCache {
             importance: item.importance,
             isDone: isDone,
             created: item.created,
-            changed: item.changed
+            changed: item.changed,
+            lastUpdatedBy: item.lastUpdatedBy
         )
         todoItems[id] = item
         DDLogInfo("Item successfully updated in json")

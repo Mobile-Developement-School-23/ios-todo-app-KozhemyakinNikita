@@ -24,7 +24,8 @@ class ToDoListCellModel {
             importance: todoItem.importance,
             isDone: !todoItem.isDone,
             created: todoItem.created,
-            changed: todoItem.changed
+            changed: todoItem.changed,
+            lastUpdatedBy: todoItem.lastUpdatedBy
         )
         todoItem = new
     }

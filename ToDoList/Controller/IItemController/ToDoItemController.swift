@@ -88,6 +88,7 @@ class ToDoItemController: UIViewController {
         case 2: importance = .important
         default: importance = .common
         }
+        let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? ""
 
         if todoItem != nil {
             let newItem = ToDoItem(
@@ -97,7 +98,8 @@ class ToDoItemController: UIViewController {
                 importance: importance,
                 isDone: false,
                 created: Date(),
-                changed: Date()
+                changed: Date(),
+                lastUpdatedBy: deviceID
             )
             todoItem = newItem
             listModel.saveTask(item: newItem)
@@ -108,10 +110,13 @@ class ToDoItemController: UIViewController {
                 importance: importance,
                 isDone: false,
                 created: Date(),
-                changed: Date()
+                changed: Date(),
+                lastUpdatedBy: deviceID
             )
-            todoItem = newItem
-            listModel.saveTask(item: newItem)
+//            todoItem = newItem
+//            listModel.saveTask(item: newItem)
+            addTodoItem(newItem)
+            listViewController?.reloadData()
         }
         dismiss(animated: true)
     }
@@ -157,6 +162,17 @@ class ToDoItemController: UIViewController {
         }
         return nil
     }
+    
+    private func addTodoItem(_ item: ToDoItem) {
+        Task {
+            do {
+                try await listModel.addNewItem(item)
+            } catch {
+                print("Error added item", error)
+            }
+        }
+    }
+    
     // MARK: - Setup
     func setupNavigationBar() {
         let titleFont = UIFont.headline
@@ -292,8 +308,9 @@ extension ToDoItemController: UITextViewDelegate {
 
 extension ToDoItemController: ToDoListViewCellDelegate {
     func didUpdateToDoItem(_ item: ToDoItem, index: Int) {
-        listModel.toDoItems[item.id] = item // заменить элемент
+//        listModel.toDoItems[item.id] = item // заменить элемент
         listModel.listViewController?.tableView.reloadData()// обновление таблицы
-        listModel.saveTask(item: item)
+//        listModel.saveTask(item: item)
+        addTodoItem(item)
     }
 }
