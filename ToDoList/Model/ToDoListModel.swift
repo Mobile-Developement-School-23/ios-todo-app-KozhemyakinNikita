@@ -17,7 +17,7 @@ class ToDoListModel {
     var fileName = "TodoCache"
     weak var listViewController: ToDoListViewController?
 //    let networkingService: NetworkingService
-    private let networkingService = DefaultNetworkingService.shared
+//    private let networkingService = DefaultNetworkingService.shared
     var isDirty = false
 
     var toDoItems: [ToDoItem] = []
@@ -37,20 +37,20 @@ class ToDoListModel {
 //        }
 //    }
     
-    init() {
-        Task.detached { [weak self] in
-            do {
-              print("loading loadin")
-                try await self?.fetchTodoItems()
-            } catch {
-                print("Error load data", error)
-            }
-        }
-      }
+//    init() {
+//        Task.detached { [weak self] in
+//            do {
+//              print("loading loadin")
+//                try await self?.fetchTodoItems()
+//            } catch {
+//                print("Error load data", error)
+//            }
+//        }
+//      }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
 }
 
@@ -112,9 +112,9 @@ extension ToDoListModel: ToDoListModelDelegate {
         switch self.status {
         case IsHiddenItem.hideCompletedItems:
 //            self.toDoItems = self.fileCache.todoItems.filter( { !$0.value.isDone } )
-            self.toDoItems = self.fileCache.todoItems.values.filter { !$0.isDone }
+            self.toDoItems = self.toDoItems.filter { !$0.isDone }
         case IsHiddenItem.showAllItems:
-            self.toDoItems = Array(self.fileCache.todoItems.values)
+            self.toDoItems = Array(self.toDoItems)
         }
         self.listViewController?.reloadData()
     }
@@ -126,85 +126,85 @@ extension ToDoListModel: ToDoListModelDelegate {
 
 //MARK: - Network methods
 
-extension ToDoListModel: @unchecked Sendable {
-    func fetchTodoItems() async throws {
-        Task.detached { [weak self] in
-            guard let self = self else { return }
-            do {
-                let items = try await self.networkingService.getList()
-                
-                DispatchQueue.main.async {
-                    self.toDoItems = items
-//                    for item in items {
-//                        self.fileCache.addItem(item)
-//                    }
-                    
-//                    print(items)
-//                    self.uncompletedTodoItems = self.toDoItems.filter { !$0.isDone }
-//                    self.completedTasksCount = self.toDoItems.filter { $0.isDone }.count
-//                    self.isLoading = false
-                }
-//                try self.fileCache.saveToFile(to: self.fileName)
-//                listModel.updateToDoList()
-                await listViewController?.reloadData()
-                
-                
-            } catch let error {
+//extension ToDoListModel: @unchecked Sendable {
+//    func fetchTodoItems() async throws {
+//        Task.detached { [weak self] in
+//            guard let self = self else { return }
+//            do {
+//                let items = try await self.networkingService.getList()
+//
 //                DispatchQueue.main.async {
-//                    self.isLoading = false
-//                    if let error = error as? APIErrors {
-//                        try await self.fileCache.loadFromFile(from: "TodoCache")
-////                        self.errorHandler?(error)
-//                    } else {
-////                        self.loadItems()
-//                       try await self.fileCache.loadFromFile(from: "TodoCache")
-//                    }
+//                    self.toDoItems = items
+////                    for item in items {
+////                        self.fileCache.addItem(item)
+////                    }
+//
+////                    print(items)
+////                    self.uncompletedTodoItems = self.toDoItems.filter { !$0.isDone }
+////                    self.completedTasksCount = self.toDoItems.filter { $0.isDone }.count
+////                    self.isLoading = false
 //                }
-            }
-        }
-    }
-    
-    private func syncDataWithServer() async throws {
-        guard isDirty else { return }
-//        isLoading = true
-        do {
-            let networkItems = try await networkingService.getList()
-            let todoList = try await networkingService.patchList(networkItems)
-            
-            DispatchQueue.main.async { [weak self] in
-                self?.toDoItems = todoList
-                self?.isDirty = false
-//                self?.isLoading = false
-            }
-            
-        } catch {
-            print("Failed to sync data with server")
-        }
-    }
-    
-    //...//
-    
-    func addNewItem(_ item: ToDoItem) async throws {
-        Task.detached { [weak self] in
-            guard let self = self else { return }
-//            isLoading = true
-            do {
-                let addedItem = try await self.networkingService.postItem(item)
-                DispatchQueue.main.async {
-                    self.saveTask(item: addedItem)
-//                    self.isLoading = false
-                }
-                
-                if isDirty {
-                    try await syncDataWithServer()
-                }
-            } catch {
-                DispatchQueue.main.async {
-//                    self.isLoading = false
-                    self.isDirty = true
-                    self.saveTask(item: item)
-                }
-            }
-        }
-    }
-}
+////                try self.fileCache.saveToFile(to: self.fileName)
+////                listModel.updateToDoList()
+//                await listViewController?.reloadData()
+//
+//
+//            } catch let error {
+////                DispatchQueue.main.async {
+////                    self.isLoading = false
+////                    if let error = error as? APIErrors {
+////                        try await self.fileCache.loadFromFile(from: "TodoCache")
+//////                        self.errorHandler?(error)
+////                    } else {
+//////                        self.loadItems()
+////                       try await self.fileCache.loadFromFile(from: "TodoCache")
+////                    }
+////                }
+//            }
+//        }
+//    }
+//
+//    private func syncDataWithServer() async throws {
+//        guard isDirty else { return }
+////        isLoading = true
+//        do {
+//            let networkItems = try await networkingService.getList()
+//            let todoList = try await networkingService.patchList(networkItems)
+//
+//            DispatchQueue.main.async { [weak self] in
+//                self?.toDoItems = todoList
+//                self?.isDirty = false
+////                self?.isLoading = false
+//            }
+//
+//        } catch {
+//            print("Failed to sync data with server")
+//        }
+//    }
+//
+//    //...//
+//
+//    func addNewItem(_ item: ToDoItem) async throws {
+//        Task.detached { [weak self] in
+//            guard let self = self else { return }
+////            isLoading = true
+//            do {
+//                let addedItem = try await self.networkingService.postItem(item)
+//                DispatchQueue.main.async {
+//                    self.saveTask(item: addedItem)
+////                    self.isLoading = false
+//                }
+//
+//                if isDirty {
+//                    try await syncDataWithServer()
+//                }
+//            } catch {
+//                DispatchQueue.main.async {
+////                    self.isLoading = false
+//                    self.isDirty = true
+//                    self.saveTask(item: item)
+//                }
+//            }
+//        }
+//    }
+//}

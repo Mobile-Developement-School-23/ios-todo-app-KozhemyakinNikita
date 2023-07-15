@@ -2,11 +2,12 @@ import Foundation
 import UIKit
 import CocoaLumberjack
 import CocoaLumberjackSwift
+import CoreData
 
 enum Importance: String {
-    case important
-    case common
-    case unimpurtant
+    case important = "important"
+    case common = "normal"
+    case unimpurtant = "unimpurtant"
 }
 
 private enum Keys {
@@ -17,7 +18,7 @@ private enum Keys {
     static let kIsDone = "done"
     static let kCreated = "created_at"
     static let kChanged = "changed_at"
-    static let kLastUpdatedBy = "last_updated_by"
+//    static let kLastUpdatedBy = "last_updated_by"
 }
 
 struct ToDoItem {
@@ -29,7 +30,7 @@ struct ToDoItem {
     let isDone: Bool
     let created: Date
     let changed: Date?
-    let lastUpdatedBy: String
+//    let lastUpdatedBy: String
 
     init(
         id: String = UUID().uuidString,
@@ -38,8 +39,8 @@ struct ToDoItem {
         importance: Importance,
         isDone: Bool,
         created: Date,
-        changed: Date?,
-        lastUpdatedBy: String
+        changed: Date?
+//        lastUpdatedBy: String
     ) {
         self.id = id
         self.text = text
@@ -48,7 +49,7 @@ struct ToDoItem {
         self.isDone = isDone
         self.created = created
         self.changed = changed
-        self.lastUpdatedBy = lastUpdatedBy
+//        self.lastUpdatedBy = lastUpdatedBy
     }
 
 }
@@ -62,8 +63,8 @@ extension ToDoItem {
         guard let id = jsn[Keys.kId] as? String,
               let text = jsn[Keys.kText] as? String,
               let isDone = jsn[Keys.kIsDone] as? Bool,
-              let createdTI = jsn[Keys.kCreated] as? TimeInterval,
-              let lastUpdatedBy = jsn[Keys.kLastUpdatedBy] as? String
+              let createdTI = jsn[Keys.kCreated] as? TimeInterval
+//              let lastUpdatedBy = jsn[Keys.kLastUpdatedBy] as? String
         else {
             return nil
         }
@@ -85,17 +86,47 @@ extension ToDoItem {
             importance: importance,
             isDone: isDone,
             created: created,
-            changed: changed,
-            lastUpdatedBy: lastUpdatedBy
+            changed: changed
+//            lastUpdatedBy: lastUpdatedBy
         )
     }
+    
+    static func parseItems(
+        id: String,
+        text: String,
+        deadline: Date?,
+        importance: String,
+        isDone: Bool,
+        created: Date,
+        changed: Date?) -> ToDoItem? {
+            let importanceType: Importance
+            
+            switch importance {
+            case "important":
+                importanceType = .important
+            case "low":
+                importanceType = .unimpurtant
+            default:
+                importanceType = .common
+            }
+            
+            return ToDoItem(
+                id: id,
+                text: text,
+                deadline: deadline,
+                importance: importanceType,
+                isDone: isDone,
+                created: created,
+                changed: changed)
+        }
+    
     var json: Any {
         var dict: [String: Any] = [
             Keys.kId: id,
             Keys.kText: text,
             Keys.kIsDone: isDone,
             Keys.kCreated: created.timeIntervalSince1970,
-            Keys.kLastUpdatedBy: lastUpdatedBy
+//            Keys.kLastUpdatedBy: lastUpdatedBy
         ]
         if let deadline = deadline {
             dict[Keys.kDeadline] = deadline.timeIntervalSince1970
@@ -185,8 +216,8 @@ final class FileCache {
             importance: item.importance,
             isDone: isDone,
             created: item.created,
-            changed: item.changed,
-            lastUpdatedBy: item.lastUpdatedBy
+            changed: item.changed
+//            lastUpdatedBy: item.lastUpdatedBy
         )
         todoItems[id] = item
         DDLogInfo("Item successfully updated in json")

@@ -18,7 +18,9 @@
 		82562FA82A4E45C100B988B0 /* ToDoListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82562FA72A4E45C100B988B0 /* ToDoListModel.swift */; };
 		82562FAF2A4E552F00B988B0 /* ToDoListModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82562FAE2A4E552F00B988B0 /* ToDoListModelDelegate.swift */; };
 		82A9EC812A61782A009A35A7 /* CoreDataToDoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82A9EC7F2A61782A009A35A7 /* CoreDataToDoModel.xcdatamodeld */; };
-		82A9EC842A61785A009A35A7 /* CoreDataToDoItems+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A9EC822A61785A009A35A7 /* CoreDataToDoItems+CoreDataClass.swift */; };
+		82A9EC872A61AC26009A35A7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A9EC862A61AC26009A35A7 /* CoreDataManager.swift */; };
+		82A9EC8A2A61C49D009A35A7 /* CoreDataToDoItems+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A9EC882A61C49D009A35A7 /* CoreDataToDoItems+CoreDataClass.swift */; };
+		82A9EC8B2A61C49D009A35A7 /* CoreDataToDoItems+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A9EC892A61C49D009A35A7 /* CoreDataToDoItems+CoreDataProperties.swift */; };
 		82B984E22A580DBD00F1CD80 /* URLSessionExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B984E12A580DBD00F1CD80 /* URLSessionExtention.swift */; };
 		82B984E42A5874F500F1CD80 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B984E32A5874F500F1CD80 /* NetworkingService.swift */; };
 		82CBED192A4648BD0049909A /* ToDoItemSettingsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CBED182A4648BD0049909A /* ToDoItemSettingsViewDelegate.swift */; };
@@ -65,7 +67,9 @@
 		82562FA72A4E45C100B988B0 /* ToDoListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListModel.swift; sourceTree = "<group>"; };
 		82562FAE2A4E552F00B988B0 /* ToDoListModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListModelDelegate.swift; sourceTree = "<group>"; };
 		82A9EC802A61782A009A35A7 /* CoreDataToDoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataToDoModel.xcdatamodel; sourceTree = "<group>"; };
-		82A9EC822A61785A009A35A7 /* CoreDataToDoItems+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataToDoItems+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		82A9EC862A61AC26009A35A7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		82A9EC882A61C49D009A35A7 /* CoreDataToDoItems+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataToDoItems+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		82A9EC892A61C49D009A35A7 /* CoreDataToDoItems+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataToDoItems+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		82B984E12A580DBD00F1CD80 /* URLSessionExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtention.swift; sourceTree = "<group>"; };
 		82B984E32A5874F500F1CD80 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		82CBED182A4648BD0049909A /* ToDoItemSettingsViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemSettingsViewDelegate.swift; sourceTree = "<group>"; };
@@ -162,8 +166,10 @@
 		82A9EC702A6175FD009A35A7 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				82A9EC822A61785A009A35A7 /* CoreDataToDoItems+CoreDataClass.swift */,
+				82A9EC882A61C49D009A35A7 /* CoreDataToDoItems+CoreDataClass.swift */,
+				82A9EC892A61C49D009A35A7 /* CoreDataToDoItems+CoreDataProperties.swift */,
 				82A9EC7F2A61782A009A35A7 /* CoreDataToDoModel.xcdatamodeld */,
+				82A9EC862A61AC26009A35A7 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -500,11 +506,11 @@
 				82562FA82A4E45C100B988B0 /* ToDoListModel.swift in Sources */,
 				82CBED272A4CE1330049909A /* ToDoListViewCell.swift in Sources */,
 				82FA45672A3D356400BB5C3B /* ToDoItemModel.swift in Sources */,
-				82A9EC842A61785A009A35A7 /* CoreDataToDoItems+CoreDataClass.swift in Sources */,
 				82B984E42A5874F500F1CD80 /* NetworkingService.swift in Sources */,
 				82F781FA2A42131B00027244 /* ToDoItemView.swift in Sources */,
 				8245BB272A4FB8F40052E8A8 /* ToDoListCellModel.swift in Sources */,
 				82CBED232A4CB6790049909A /* ToDoListView.swift in Sources */,
+				82A9EC8A2A61C49D009A35A7 /* CoreDataToDoItems+CoreDataClass.swift in Sources */,
 				82EBF3D52A389B5700CEE3CB /* AppDelegate.swift in Sources */,
 				82562FAF2A4E552F00B988B0 /* ToDoListModelDelegate.swift in Sources */,
 				82F781FC2A42139800027244 /* ToDoItemController.swift in Sources */,
@@ -515,6 +521,8 @@
 				82F781FE2A424CA500027244 /* Extentions.swift in Sources */,
 				8245BB252A4FAB090052E8A8 /* ToDoListHeaderCell.swift in Sources */,
 				82A9EC812A61782A009A35A7 /* CoreDataToDoModel.xcdatamodeld in Sources */,
+				82A9EC8B2A61C49D009A35A7 /* CoreDataToDoItems+CoreDataProperties.swift in Sources */,
+				82A9EC872A61AC26009A35A7 /* CoreDataManager.swift in Sources */,
 				82562FA62A4E412800B988B0 /* ToDoListViewControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

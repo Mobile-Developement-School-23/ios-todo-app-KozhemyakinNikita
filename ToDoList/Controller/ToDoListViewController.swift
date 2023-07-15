@@ -15,9 +15,8 @@ class ToDoListViewController: UIViewController {
     let tableViewHeader = ToDoListHeaderCell()
     let fc = FileCache()
     let creationButton = UIButton()
-
+    var todoItems: [ToDoItem] = []
     private let creationViewController = ToDoItemController()
-
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
 
     override func viewDidLoad() {
@@ -32,13 +31,18 @@ class ToDoListViewController: UIViewController {
 
 //        listModel.fetchData()
 //        listModel.fetchTodoItems()
-        
+        fetchData()
         listModel.updateToDoList()
     }
 
     @objc func creationButtonDidTapped() {
         listModel.openSetupToDo(with: nil)
     }
+    
+     func fetchData() {
+         listModel.toDoItems = CoreDataManager.shared.loadCoreData()
+    }
+    
 
 }
 
@@ -80,7 +84,7 @@ extension ToDoListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        tableViewHeader.textViewLabel.text = "Выполнено - \(listModel.fileCache.todoItems.filter({ $0.value.isDone }).count)"
+        tableViewHeader.textViewLabel.text = "Выполнено - \(listModel.toDoItems.filter({ $0.isDone }).count)"
         tableViewHeader.valueDidChange = {listModel.updateToDoList()}
         return tableViewHeader
     }
@@ -115,7 +119,8 @@ extension ToDoListViewController: UITableViewDataSource {
             var todoItems = listModel.toDoItems
             todoItems.sort(by: { $0.created < $1.created })
             let item  = todoItems[indexPath.row]
-            listModel.deleteTask(id: item.id)
+//            listModel.deleteTask(id: item.id)
+            CoreDataManager.shared.deleteCoreData(todoItem: item)
             completionHandler(true)
         }
         trash.backgroundColor = UIColor.Colors.colorRed
