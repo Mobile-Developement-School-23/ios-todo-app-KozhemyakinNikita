@@ -15,9 +15,8 @@ class ToDoListViewController: UIViewController {
     let tableViewHeader = ToDoListHeaderCell()
     let fc = FileCache()
     let creationButton = UIButton()
-
+    var todoItems: [ToDoItem] = []
     private let creationViewController = ToDoItemController()
-
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
 
     override func viewDidLoad() {
@@ -30,13 +29,20 @@ class ToDoListViewController: UIViewController {
 
         listModel.listViewController = self
 
-        listModel.fetchData()
+//        listModel.fetchData()
+//        listModel.fetchTodoItems()
+        fetchData()
         listModel.updateToDoList()
     }
 
     @objc func creationButtonDidTapped() {
         listModel.openSetupToDo(with: nil)
     }
+    
+     func fetchData() {
+         listModel.toDoItems = CoreDataManager.shared.loadCoreData()
+    }
+    
 
 }
 
@@ -61,7 +67,10 @@ extension ToDoListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let todoItems = Array(listModel.toDoItems.values).sorted(by: { $0.created < $1.created })
+//        let todoItems = Array(listModel.toDoItems.values).sorted(by: { $0.created < $1.created })
+        var todoItems = listModel.toDoItems
+        todoItems.sort(by: { $0.created < $1.created })
+//        listModel.toDoItems.sort(by: { $0.created < $1.created })
         let todoItem = todoItems[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? ToDoListViewCell {
             cell.accessoryType = .disclosureIndicator
@@ -75,7 +84,7 @@ extension ToDoListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        tableViewHeader.textViewLabel.text = "Выполнено - \(listModel.fileCache.todoItems.filter({ $0.value.isDone }).count)"
+        tableViewHeader.textViewLabel.text = "Выполнено - \(listModel.toDoItems.filter({ $0.isDone }).count)"
         tableViewHeader.valueDidChange = {listModel.updateToDoList()}
         return tableViewHeader
     }
@@ -84,7 +93,9 @@ extension ToDoListViewController: UITableViewDataSource {
         _ tableView: UITableView,
         leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath
     ) -> UISwipeActionsConfiguration? {
-        let todoItems = Array(listModel.toDoItems.values).sorted(by: { $0.created < $1.created })
+//        let todoItems = Array(listModel.toDoItems.values).sorted(by: { $0.created < $1.created })
+        var todoItems = listModel.toDoItems
+        todoItems.sort(by: { $0.created < $1.created })
         let toggle = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
             let item  = todoItems[indexPath.row]
             completionHandler(true)
@@ -104,9 +115,12 @@ extension ToDoListViewController: UITableViewDataSource {
         trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
     ) -> UISwipeActionsConfiguration? {
         let trash = UIContextualAction(style: .destructive, title: "") { (action, view, completionHandler) in
-            let todoItems = Array(listModel.toDoItems.values).sorted(by: { $0.created < $1.created })
+//            let todoItems = Array(listModel.toDoItems.values).sorted(by: { $0.created < $1.created })
+            var todoItems = listModel.toDoItems
+            todoItems.sort(by: { $0.created < $1.created })
             let item  = todoItems[indexPath.row]
-            listModel.deleteTask(id: item.id)
+//            listModel.deleteTask(id: item.id)
+            CoreDataManager.shared.deleteCoreData(todoItem: item)
             completionHandler(true)
         }
         trash.backgroundColor = UIColor.Colors.colorRed
@@ -120,7 +134,9 @@ extension ToDoListViewController: UITableViewDataSource {
 extension ToDoListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let todoItems = Array(listModel.toDoItems.values).sorted(by: { $0.created < $1.created })
+//        let todoItems = Array(listModel.toDoItems.values).sorted(by: { $0.created < $1.created })
+        var todoItems = listModel.toDoItems
+        todoItems.sort(by: { $0.created < $1.created })
         let selectedTodoItem = todoItems[indexPath.row]
         showToDoItemController(with: selectedTodoItem)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -140,7 +156,9 @@ extension ToDoListViewController: ToDoListDelegate {
     func didUpdateToDoItem(_ item: ToDoItem) {
 
         print("Updated")
-        var todoItems = Array(listModel.toDoItems.values).sorted(by: { $0.created < $1.created })
+//        var todoItems = Array(listModel.toDoItems.values).sorted(by: { $0.created < $1.created })
+        var todoItems = listModel.toDoItems
+        todoItems.sort(by: { $0.created < $1.created })
         if let index = todoItems.firstIndex(where: { $0.id == item.id }) {
             todoItems[index] = item
             print("Updated2")

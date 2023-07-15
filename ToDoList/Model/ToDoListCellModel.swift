@@ -25,6 +25,7 @@ class ToDoListCellModel {
             isDone: !todoItem.isDone,
             created: todoItem.created,
             changed: todoItem.changed
+//            lastUpdatedBy: todoItem.lastUpdatedBy
         )
         todoItem = new
     }

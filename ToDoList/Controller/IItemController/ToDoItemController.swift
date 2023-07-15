@@ -88,9 +88,10 @@ class ToDoItemController: UIViewController {
         case 2: importance = .important
         default: importance = .common
         }
+//        let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? ""
 
         if todoItem != nil {
-            let newItem = ToDoItem(
+            let oldItem = ToDoItem(
                 id: todoItem?.id ?? "",
                 text: textView.text,
                 deadline: settingsView.deadlineSwitcher.isOn ? settingsView.deadlineDatePicker.date : nil,
@@ -98,9 +99,13 @@ class ToDoItemController: UIViewController {
                 isDone: false,
                 created: Date(),
                 changed: Date()
+//                lastUpdatedBy: deviceID
             )
-            todoItem = newItem
-            listModel.saveTask(item: newItem)
+            todoItem = oldItem
+            listModel.saveTask(item: oldItem)
+            CoreDataManager.shared.updateCoreData(todoItem: oldItem)
+            
+            listViewController?.tableView.reloadData()
         } else {
             let newItem = ToDoItem(
                 text: textView.text,
@@ -109,9 +114,12 @@ class ToDoItemController: UIViewController {
                 isDone: false,
                 created: Date(),
                 changed: Date()
+//                lastUpdatedBy: deviceID
             )
-            todoItem = newItem
-            listModel.saveTask(item: newItem)
+            
+            CoreDataManager.shared.insertCoreData(todoItem: newItem)
+            
+            listViewController?.reloadData()
         }
         dismiss(animated: true)
     }
@@ -157,6 +165,17 @@ class ToDoItemController: UIViewController {
         }
         return nil
     }
+    
+//    private func addTodoItem(_ item: ToDoItem) {
+//        Task {
+//            do {
+//                try await listModel.saveTask(item: item)
+//            } catch {
+//                print("Error added item", error)
+//            }
+//        }
+//    }
+    
     // MARK: - Setup
     func setupNavigationBar() {
         let titleFont = UIFont.headline
@@ -260,7 +279,8 @@ extension ToDoItemController: ToDoItemSettingsViewDelegate {
         guard let item = todoItem else { return }
 //        let fc = FileCache()
 //        try? fc.loadFromFile(from: "TodoCache")
-        listModel.deleteTask(id: item.id)
+//        listModel.deleteTask(id: item.id)
+        CoreDataManager.shared.deleteCoreData(todoItem: item)
         resetButtons()
         settingsView.deadlineDate.isHidden = true
         dismiss(animated: true)
@@ -292,8 +312,9 @@ extension ToDoItemController: UITextViewDelegate {
 
 extension ToDoItemController: ToDoListViewCellDelegate {
     func didUpdateToDoItem(_ item: ToDoItem, index: Int) {
-        listModel.toDoItems[item.id] = item // заменить элемент
+//        listModel.toDoItems[item.id] = item // заменить элемент
         listModel.listViewController?.tableView.reloadData()// обновление таблицы
-        listModel.saveTask(item: item)
+//        listModel.saveTask(item: item)
+//        addTodoItem(item)
     }
 }
